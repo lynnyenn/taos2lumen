@@ -1,0 +1,98 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Ubuntu:700|Raleway");
+@font-face {
+    font-family: 'cwTeXHei';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot);
+    src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format('woff2'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format('woff'), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format('truetype');
+}
+
+@font-face {
+    /*楷體*/
+    font-family: 'cwTeXKai';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot);
+    src: url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff2) format('woff2'), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff) format('woff'), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.ttf) format('truetype');
+}
+
+$normolfontstyle: 'cwTeXHei','Roboto',sans-serif;
+$normolcolor: #565656;
+$blue: #03a9f4;
+$red: #ef5350;
+$tear: #4fc3f7;
+
+body {
+    background: #f5f5f5;
+    font-family: $normolfontstyle;
+    font-weight: 400;
+    color: $normolcolor;
+    font-size: 16px;
+    line-height: 32px;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    //font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-weight: 700;
+    color: $normolcolor;
+}
+
+.button{
+    background: $tear;
+}
+
+a {
+    -moz-transition: color 0.25s ease, border-bottom-color 0.25s ease;
+    -webkit-transition: color 0.25s ease, border-bottom-color 0.25s ease;
+    -ms-transition: color 0.25s ease, border-bottom-color 0.25s ease;
+    transition: color 0.25s ease, border-bottom-color 0.25s ease;
+    //color: inherit;
+    color: $blue;
+    text-decoration: none;
+}
+
+.nolinkcolor {
+    a {
+        color: $normolcolor;
+    }
+}
+
+.linkline {
+    border-bottom: 1px dashed $blue;
+}
+
+a:hover {
+    border-bottom-color: transparent;
+    color: $red;
+}
+
+.container {
+    .header{
+        border-left: 5px solid $tear;
+        padding: 10px;
+        margin: 30px;
+        font-size: 3em;
+        line-height: 25px;
+    }
+    section p, article p {
+        text-indent: 2em;
+    }
+}
+
+
+
+/* Media Queries */
+@media screen and (max-width: 42em) {
+  body {
+    font-size: 14px;
+    line-height: 22px;
+    }
+  .stress{
+        font-size: 2em;
+    }
+}

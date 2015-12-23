@@ -1,0 +1,37 @@
+.subitem {
+  padding-left: 23px;
+}
+
+footer {
+  position: relative;
+  background-color: #e0e0e0;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 0;
+  padding: 60px 0 40px 0;
+  color: #999;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.8em;
+}
+
+footer .parnet {
+  position: absolute;
+  right: 20px;
+  top: -40px;
+  margin: 0;
+}
+
+footer .parnet img {
+  padding: 5px;
+  height: 100px;
+}
+
+footer a {
+  color: #999;
+  padding: 0 10px;
+  border-bottom: 0px;
+}
+
+footer i {
+  vertical-align: top;
+}

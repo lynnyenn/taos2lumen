@@ -1,0 +1,87 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Ubuntu:700|Raleway");
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'cwTeXHei';
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot);
+  src: url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format("woff2"), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format("woff"), url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format("truetype");
+}
+
+@font-face {
+  /*楷體*/
+  font-family: 'cwTeXKai';
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot);
+  src: url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff2) format("woff2"), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff) format("woff"), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.ttf) format("truetype");
+}
+
+body {
+  background: #f5f5f5;
+  font-family: "cwTeXHei", "Roboto", sans-serif;
+  font-weight: 400;
+  color: #565656;
+  font-size: 16px;
+  line-height: 32px;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-weight: 700;
+  color: #565656;
+}
+
+.button {
+  background: #4fc3f7;
+}
+
+a {
+  transition: color 0.25s ease, border-bottom-color 0.25s ease;
+  color: #03a9f4;
+  text-decoration: none;
+}
+
+.nolinkcolor a {
+  color: #565656;
+}
+
+.linkline {
+  border-bottom: 1px dashed #03a9f4;
+}
+
+a:hover {
+  border-bottom-color: transparent;
+  color: #ef5350;
+}
+
+.container .header {
+  border-left: 5px solid #4fc3f7;
+  padding: 10px;
+  margin: 30px;
+  font-size: 3em;
+  line-height: 25px;
+}
+
+.container section p,
+.container article p {
+  text-indent: 2em;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 42em) {
+  body {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .stress {
+    font-size: 2em;
+  }
+}

@@ -1,0 +1,35 @@
+.subitem{
+    padding-left: 23px;
+}
+
+
+
+
+//footer setting
+footer {
+    position: relative;
+    background-color: #e0e0e0;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0;
+    padding: 60px 0 40px 0;
+    color: #999;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    line-height: 32px;
+    .parnet {
+        position: absolute;
+        right: 20px;
+        top: -50px;
+        margin: 0;
+        img {
+            padding: 5px;
+            height: 100px;
+        }
+    }
+    a {
+        color: #999;
+        padding: 0 5px;
+        border-bottom: 0px;
+    }
+}
