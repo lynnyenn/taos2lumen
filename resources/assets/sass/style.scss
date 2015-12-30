@@ -16,14 +16,14 @@
     src: url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff2) format('woff2'), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.woff) format('woff'), url(//fonts.gstatic.com/ea/cwtexkai/v3/cwTeXKai-zhonly.ttf) format('truetype');
 }
 
-$normolfontstyle: 'cwTeXHei','Roboto',sans-serif;
+$normolfontstyle: 'Roboto','cwTeXHei', sans-serif;
 $normolcolor: #565656;
 $blue: #03a9f4;
 $red: #ef5350;
 $tear: #4fc3f7;
 
 body {
-    background: #f5f5f5;
+    background: #f5f5f5 !important;
     font-family: $normolfontstyle;
     font-weight: 400;
     color: $normolcolor;
@@ -72,19 +72,17 @@ a:hover {
 }
 
 .container {
+    padding-top: 30px;
     .header{
         border-left: 5px solid $tear;
         padding: 10px;
-        margin: 30px;
-        font-size: 3em;
+        margin: 20px 0;
         line-height: 25px;
     }
     section p, article p {
-        text-indent: 2em;
+       text-indent: 2em;
     }
 }
-
-
 
 /* Media Queries */
 @media screen and (max-width: 42em) {
@@ -95,4 +93,8 @@ a:hover {
   .stress{
         font-size: 2em;
     }
+}
+
+.readmore{
+    text-align: right;
 }

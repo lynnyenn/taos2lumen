@@ -7,7 +7,7 @@
 <meta name="keywords" content="TAOS 2" />
 <meta name="description" content="TAOS II-Transneptunian Automated Occultation Survey" />
 <!-- Favicons-->
-<link rel="shortcut icon" href="{{{ 'favicon.ico' }}}">
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
 <!-- Chrome & Firefox OS -->
 <meta name="theme-color" content="#4285f4">
 <!-- Windows Phone -->

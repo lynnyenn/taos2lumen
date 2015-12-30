@@ -6,12 +6,12 @@
     <link rel="stylesheet" type="text/css" href="css/home.css">
 @stop
 @section('nav_home')
-
+    @include('includes.nav_home')
 @stop
 @section('content')
 <div class="home">
     <h2 class="header padded">{{ trans('base.project') }}</h2>
-    <div class="ui stackable four column grid centered">
+    <div class="ui stackable three column grid centered">
       <div class="column center aligned"><img class="circular image ui centered" src="images/projects/telescope.png">
         <div class="projec_title">{{ trans('base.telescopes') }}</div>
         <div>TAOS is in the process of procuring three telescopes from DFM Engineering in Longmont, Colorado.</div>
@@ -37,7 +37,7 @@
     @foreach($newslist as $news)
         @if($news->title)
         <div>
-            <span class="hide-on-med-and-up" style="padding-right: 20px" >&bull;</span><span style="padding-right: 20px" class="hide-on-small-only">{{ $news->published_at->format('Y-m-d') }}</span><a href="{{ route('home') }}/news/{{ $news->id }}">{{ $news->title }}</a>
+            <span class="hide-on-med-and-up" style="padding-right: 20px" >&bull;</span><span style="padding-right: 20px" class="hide-on-small-only">{{ $news->published_at->format('Y-m-d') }}</span><a href="{{ route('path') }}/news/{{ $news->id }}">{{ $news->title }}</a>
         </div>
         @endif
     @endforeach

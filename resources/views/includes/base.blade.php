@@ -3,17 +3,16 @@
 <head>
     @include('includes.header')
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/css/semantic.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/include.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/include.css">
     @yield('css')
-    <script src="js/jquery.min.js"></script>
-    <script src="js/semantic.min.js"></script>
 </head>
 <body>
     <div class="pureparallax">
         @include('includes.nav')
+        @include('includes.language')
         @yield('nav_home')
         <!-- Main -->
         <section id="main" class="ui container">
@@ -22,7 +21,9 @@
     </div>
     @include('includes.footer')
     <!-- Scripts-->
-    <script>if (!window.jQuery) { document.write('<script src="js/jquery/dist/jquery.min.js"><\/script>'); }</script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/semantic.min.js"></script>
+    <script>if (!window.jQuery) { document.write('<script src="/js/jquery/dist/jquery.min.js"><\/script>'); }</script>
     <script type="text/javascript">
         $('nav .ui.dropdown')
           .dropdown({
@@ -30,12 +31,13 @@
           });
         $('nav .ui.sidebar')
           .sidebar('attach events', 'nav .m_menu .item')
-        ;
+        ;/*
         $('.update').delay(3000).slideUp(300);
         // Show sideNav
         $(".button-collapse").sideNav();
         $('.dropdown-button').dropdown({
         });
+*/
         $('.dropdown-lang').dropdown({
             constrain_width: true,
             hover: true, // Activate on hover

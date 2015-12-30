@@ -1,7 +1,7 @@
-process.env.DISABLE_NOTIFIER = true;
-
 var elixir = require('laravel-elixir');
 var gulp = require('gulp');
+
+process.env.DISABLE_NOTIFIER = true;
 
 elixir(function(mix) {
     mix
@@ -11,5 +11,6 @@ elixir(function(mix) {
      .copy('resources/assets/semantic-ui/dist/themes/default/assets/fonts', 'public/css/themes/default/assets/fonts')
      .sass('include.scss')
      .sass('style.scss')
-     .sass('home.scss');
+     .sass('home.scss')
+     .sass('about.scss')
 });
