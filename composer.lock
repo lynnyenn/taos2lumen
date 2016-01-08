@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "e80dce7bc3209d20c41c284cc7c218d4",
+    "content-hash": "44a021c6570006cb0c42c7dfb04790b2",
     "packages": [
         {
             "name": "arcanedev/localization",

@@ -1,0 +1,199 @@
+@extends('includes.base')
+@section('title')
+    {{ trans('base.charts') }}
+@stop
+@section('css')
+<link rel="stylesheet" href="n3-charts/build/linechart.css">
+<style type="text/css">
+    .axis path {
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: Lato;
+    font-size: 13px;
+}
+</style>
+@stop
+@section('content')
+    <h2 class="padded">{{ trans('base.charts') }}</h2>
+    <div id="charts"></div>
+    <div id="App1" ng-app="app" ng-controller="FetchCtrl">
+      <pre>http status code: <%status%></pre>
+      <pre>http response data: <%data%></pre>
+      <div id="App2" ng-controller="MainCtrl">
+        <button ng-click="click()" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span> Star
+获取数据</button>
+        <linechart data='data' options='options'></linechart>
+        <div class="my-chart">
+          <linechart data="data" options="options"></linechart>
+        </div>
+    </div>
+    </div>
+
+
+@stop
+@section('js')
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="/js/angular.js"></script>
+<script src="n3-charts/build/linechart.js"></script>
+<script>
+var myAppModule = angular.module('myApp', [], function($interpolateProvider) {
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+});
+
+myAppModule.controller('FetchCtrl',function ($scope, $http, $templateCache){
+  $scope.method = 'GET';
+  $scope.url = '<?=url('/charts/wxtd')?>';
+
+  $scope.code = null;
+  $scope.response = null;
+
+  $http({method: $scope.method, url: $scope.url, cache: $templateCache}).
+    success(function(data, status) {
+        $scope.status = status;
+        $scope.data = data;
+        $.each(data,function(key,val){
+            sensorsData.push(val.sensors1);
+        })
+    }).
+    error(function(data, status) {
+        $scope.data = data || "Request failed";
+        $scope.status = status;
+        log.l("Request Failed");
+    });
+});
+var app = angular.module('chartApp', ['n3-charts.linechart']);
+app.controller('MainCtrl', function($scope, $http, $templateCache) {
+    $scope.click=function(){
+        $scope.options = {lineMode: 'cardinal',series: [{y: 'value', label: 'temperature', color: 'steelblue'}]};
+        $scope.data=[{x:0,value:12}];
+        $scope.url = '<?=url('/charts')?>';
+           $scope.url=$scope.url+'/'+{{$maxid}};
+        log.l($scope.url);
+
+        $scope.method = 'GET';
+
+        $http({method: $scope.method, url: $scope.url, cache: $templateCache}).
+            success(function(data, status) {
+                $.each(data,function(key,val){
+                    $scope.data.push({x:1,value:val.sensors1});
+                    $scope.data.push({x:2,value:val.sensors2});
+                    log.l($scope.data);
+                })
+            }).
+            error(function(data, status) {
+                $scope.data = data || "Request failed";
+                log.l("Request Failed");
+            });
+    }
+});
+</script>
+<script type="text/javascript">
+      angular.module('app', ['n3-line-chart'], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        })
+        .controller('MainCtrl', function($scope) {
+          $scope.data = {
+            dataset0: [
+              {x: 0, val_0: 0, val_1: 0, val_2: 0, val_3: 0},
+              {x: 1, val_0: 0.993, val_1: 3.894, val_2: 8.47, val_3: 14.347},
+              {x: 2, val_0: 1.947, val_1: 7.174, val_2: 13.981, val_3: 19.991},
+              {x: 3, val_0: 2.823, val_1: 9.32, val_2: 14.608, val_3: 13.509},
+              {x: 4, val_0: 3.587, val_1: 9.996, val_2: 10.132, val_3: -1.167},
+              {x: 5, val_0: 4.207, val_1: 9.093, val_2: 2.117, val_3: -15.136},
+              {x: 6, val_0: 4.66, val_1: 6.755, val_2: -6.638, val_3: -19.923},
+              {x: 7, val_0: 4.927, val_1: 3.35, val_2: -13.074, val_3: -12.625}
+            ]
+          };
+
+          $scope.options = {
+            series: [
+              {
+                axis: "y",
+                dataset: "dataset0",
+                key: "val_0",
+                label: "An area series",
+                color: "#1f77b4",
+                type: ['line', 'dot', 'area'],
+                id: 'mySeries0'
+              }
+            ],
+            axes: {x: {key: "x"}}
+          };
+        });
+    </script>
+<script>
+/*
+var data = [{
+    "temperature": "15.211",
+    "timestamp": "1450768746",
+    "year": 2015
+}, {
+    "temperature": "13.2673",
+    "timestamp": "1450769093",
+    "year": 2015
+}, {
+    "temperature": "13.2673",
+    "timestamp": "1450771987",
+    "year": 2015
+}, {
+    "temperature": "15.456",
+    "timestamp": "1450774312",
+    "year": 2015
+}, {
+    "temperature": "13",
+    "timestamp": "1450774317",
+    "year": 2015
+}, {
+    "temperature": "15",
+    "timestamp": "1450774323",
+    "year": 2015
+}];
+
+ */
+// load the external data
+d3.json("/charts/wxtd", function(error, d) {
+  update(d);
+});
+//data.forEach(function(d) { d.timestamp = new Date(d.timestamp * 1000);});
+//.tickFormat(function(d){return d3.time.format('%d-%b')(new Date(d));})
+// find data range
+var xMin = d3.min(data, function(d){ return Math.min(d.timestamp); });
+var xMax = d3.max(data, function(d){ return Math.max(d.timestamp); });
+//console.log(new Date(xMax * 1000));
+//console.log(xMax);
+function update(source) {
+    var vis = d3.select("#visualisation"),
+        WIDTH = 1000,
+        HEIGHT = 500,
+        MARGINS = {
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 50
+        },
+        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([xMin,xMax]),
+        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([10,19]),
+        xAxis = d3.svg.axis().scale(xScale);
+        yAxis = d3.svg.axis().scale(yScale).orient("left");
+        vis.append("svg:g")
+            .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+            .call(xAxis);
+        vis.append("svg:g").attr("transform", "translate(" + (MARGINS.left) + ",0)")
+        .call(yAxis);
+        var lineGen = d3.svg.line()
+        //.x(function(d) { return xScale(new Date(d.timestamp * 1000)); })
+        .x(function(d) { return xScale(d.timestamp); })
+        .y(function(d) { return yScale(d.temperature); });
+        vis.append('svg:path')
+          .attr('d', lineGen(data))
+          .attr('stroke', 'green')
+          .attr('stroke-width', 2)
+          .attr('fill', 'none');
+    }
+</script>
+@stop

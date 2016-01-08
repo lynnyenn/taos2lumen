@@ -3,6 +3,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Xwtd extends Model {
-	protected $table = "xwtd";
+class Wxtd extends Model {
+	protected $connection = 'charts';
+	protected $table = "wxtd";
 }

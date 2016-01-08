@@ -3,26 +3,9 @@
     {{ trans('base.about') }}
 @stop
 @section('css')
-<link href="/css/about.css'" rel="stylesheet">
+<link href="/css/about.css" rel="stylesheet">
 <link href="/css/hover_effects.css" rel="stylesheet">
-<style type="text/css">
-    .overlay{
-        background-color: rgba(234, 239, 243, 0.8);
-        padding:10px;
-        font-size: 14px;
-        font-weight: 300;
-        width: 150px;
-    }
-    .overlay .item{
-        display: block;
-        padding-left: 10px;
-    }
-    .overlay .active{
-        font-weight: 500;
-        border-left: 2px solid #80d4f9;
-        padding-left: 8px;
-    }
-</style>
+<link href="/css/overlay.css" rel="stylesheet">
 @stop
 @section('content')
     <h2 class="padded">{{ trans('base.about') }}</h2>
@@ -30,11 +13,12 @@
     <div class="ui grid">
         <div class="thirteen wide column">
             <h4>{{ trans('about.institutional') }}</h4>
-            <article id="institutional" class="section scrollspy linkcolor">
-                <div class="partner ui grid">
-                    <a href="http://www.asiaa.sinica.edu.tw/" target="_blank">
-                    <img src="/images/about/logo_asiaa.png" class="col s6 m2"></a>
-                    <div class="info col s12 m10">
+            <article id="institutional" class="section linkcolor">
+                <div class="ui grid stackable">
+                    <div class="three wide column"><a href="http://www.asiaa.sinica.edu.tw/" target="_blank">
+                    <img src="/images/about/logo_asiaa.png" class="ui image"></a>
+                    </div>
+                    <div class="thirteen wide column">
                         <a href="http://www.asiaa.sinica.edu.tw/" target="_blank">
                         {{ trans('about.asiaa_fullname') }}</a>
                         <div class="ui divider"></div>
@@ -42,9 +26,9 @@
                         {{ trans('about.tel') }}: +886-2-3365-2200<br />
                     </div>
                 </div>
-                <div class="grid">
+                <div class="ui grid stackable">
                     <div class="three wide column"><a href="http://www.astroscu.unam.mx/" target="_blank">
-                    <img src="/images/about/logo-unam.png"></a></div>
+                    <img src="/images/about/logo-unam.png" class="ui image"></a></div>
                     <div class="thirteen wide column">
                         <a href="http://www.astroscu.unam.mx/" target="_blank">{{ trans('about.unam_fullname') }}</a>
                         <div class="ui divider"></div>
@@ -52,10 +36,11 @@
                         {{ trans('about.tel') }}: +52 (646) 174 4593<br />
                     </div>
                 </div>
-                <div class="ui grid">
-                    <a href="https://www.cfa.harvard.edu/" target="_blank">
-                    <img src="/images/about/logo_cfa.png"></a>
-                    <div class="info">
+                <div class="ui grid stackable">
+                    <div class="three wide column"><a href="https://www.cfa.harvard.edu/" target="_blank">
+                    <img src="/images/about/logo_cfa.png" class="ui image"></a>
+                    </div>
+                    <div class="thirteen wide column">
                         <a href="https://www.cfa.harvard.edu/" target="_blank">{{ trans('about.cfa_fullname') }}</a>
                         <div class="ui divider"></div>
                         60 Garden Street Cambridge, MA 02138<br />
@@ -95,26 +80,26 @@
            </div>
            <h4>{{ trans('about.industrial') }}</h4>
            <article id="industrial" class="section scrollspy">
-                <div class="partner ui grid">
-                    <a href="http://www.ashdome.com/" target="_blank">
-                    <img src="/images/about/Ash-Dome.gif" class="col s12 m4"></a>
-                    <img src="/images/about/salazar.gif" class="col s12 m4">
-                    <a href="http://www.e2v.com/" target="_blank">
-                    <img src="/images/about/e2v.gif" class="col s12 m4"></a>
-                </div>
-                <div class="partner ui grid">
-                    <a href="http://www.dfmengineering.com/" target="_blank">
-                    <img src="/images/about/dfm.gif" class="offset-m3 col s12 m2" ></a>
-                    <a href="http://www.gbcinc.com/" target="_blank">
-                    <img src="/images/about/gbc.jpg" class="col s12 m4"></a>
+                <div class="partner ui grid stackable three column">
+                    <div class="column"><a href="http://www.ashdome.com/" target="_blank"><img src="/images/about/Ash-Dome.gif" class="ui image"></a></div>
+                    <div class="column"><img src="/images/about/salazar.gif" class="ui image"></div>
+                    <div class="column"><a href="http://www.e2v.com/" target="_blank">
+                    <img src="/images/about/e2v.gif" class="ui image"></a></div>
+                    <div class="column"><a href="http://www.dfmengineering.com/" target="_blank"><img src="/images/about/dfm.gif" class="ui image" ></a></div>
+                    <div class="column"><a href="http://www.gbcinc.com/" target="_blank"><img src="/images/about/gbc.jpg" class="ui image"></a></div>
                 </div>
             </article>
         </div>
         <div class="three wide column">
             <div class="ui overlay labeled icon nolinkcolor">
-                <a href ="#asiaa" class="item">ASIAA</a>
-                <a href ="#cfa" class="item">CFA</a>
-                <a href ="#unam" class="item">UNAM</a>
+                <a href ="#institutional" class="item institutional">Institutional Partners</a>
+                <a href ="#asiaa" class="item">People</a>
+                <div class="list">
+                    <a href ="#asiaa" class="item asiaa">ASIAA</a>
+                    <a href ="#unam" class="item unam">UNAM</a>
+                    <a href ="#cfa" class="item cfa">CFA</a>
+                    </div>
+                <a href ="#industrial" class="item industrial">Industrial Partners</a>
             </div>
         </div>
     </div>
@@ -140,6 +125,26 @@
             }
         });
       @endforeach
+        $('#institutional').visibility({
+            continuous: true,
+            onOnScreen: function() {
+             $('.overlay .item').removeClass('active');
+             $('.overlay .institutional').addClass('active');
+            },
+            onOffScreen : function() {
+               $('.overlay .institutional').removeClass('active');
+            }
+        });
+        $('#industrial').visibility({
+            continuous: true,
+            onOnScreen: function() {
+             $('.overlay .item').removeClass('active');
+             $('.overlay .industrial').addClass('active');
+            },
+            onOffScreen : function() {
+               $('.overlay .industrial').removeClass('active');
+            }
+        });
     }) ;
     </script>
     <!--[if IE]>

@@ -1,4 +1,5 @@
 <?php
+/** @var DatabaseManager $db */
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -9,44 +10,7 @@
 | and give it the Closure to call when that URI is requested.
 |
  */
-/*
-$app->get('/', function () use ($app) {
-return $app->welcome();
-});
-
-//$app->get('/', 'HomeController@index');
-
-$app->group([
-'prefix'     => Localization::setLocale(),
-//'prefix'     => app('Localization')::setLocale(),
-'middleware' => [
-'localization-session-redirect',
-'localization-redirect',
-],
-], function($app)
-{
-$app->get('/', function() {
-return view('HomeController@index');
-});
-
-$app->get('user/profile', function() {
-// Uses Foo & Bar Middleware
-});
-});
-/*
-$app->get('/tw', function () use ($app) {
-app('translator')->setLocale('tw');
-
-//return $app->welcome();
-});
-
-//$app->get('/{locale}', 'HomeController@index');
-$app->get('/', function () use ($app) {
-return $app->welcome();
-});
- */
 //$app->get('/', ['uses' => 'HomeController@index', 'lang' => 'name']);
-
 /*
 for key
  */
@@ -71,23 +35,22 @@ $app->get($locate, [
 
 $app->get($locate . 'about', 'AboutController@index');
 $app->get($locate . 'news', 'NewsController@index');
-$app->get($locate . 'news', 'NewsController@index');
 $app->get($locate . 'news/{id}', 'NewsController@show');
 $app->get($locate . 'projects', 'ProjectsController@index');
 $app->get($locate . 'gallery', 'GalleryController@index');
 $app->get($locate . 'publications', 'PublicationsController@index');
 
+$app->get($locate . 'charts/{id}', 'ChartsController@show');
+$app->get($locate . 'charts', 'ChartsController@index');
 /*
-$app->group([
-'prefix' => '',
-//'middleware' => [ 'local_session','local_redirect'],
-], function($app)
-{
-$app->get('/', 'App\Http\Controllers\HomeController@index');
-$app->get('/news', 'App\Http\Controllers\HomeController@index');
-
-$app->get('user/profile', function() {
-// Uses Foo & Bar Middleware
+$app->get('/charts/{type}', function ($type) {
+$atdata = Wxtd::where('no', '=', 1)
+->select('timestamp', 'temperature', 'humidity')
+->get();
+return Response()->json($atdata);
 });
+$app->get('/charts', function () {
+$maxid = Wxtd::max('id');
+return View()->make('frontend.charts')->with('maxid', $maxid);
 });
  */

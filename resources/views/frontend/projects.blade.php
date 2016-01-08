@@ -3,24 +3,7 @@
     {{ trans('base.project') }}
 @stop
 @section('css')
-<style type="text/css">
-    .overlay{
-        background-color: rgba(234, 239, 243, 0.8);
-        padding:10px;
-        font-size: 14px;
-        font-weight: 300;
-        width: 150px;
-    }
-    .overlay .item{
-        display: block;
-        padding-left: 10px;
-    }
-    .overlay .active{
-        font-weight: 500;
-        border-left: 2px solid #80d4f9;
-        padding-left: 8px;
-    }
-</style>
+<link href="/css/overlay.css" rel="stylesheet">
 @stop
 @section('nav_home')
 @stop

@@ -6,9 +6,9 @@
       </a>
     </div>
     <div class="item">
-      <span class="logo"><a href="{{ route('path') }}/">TAOS II</a></span><span class="chinesetitle">海王星外自動掩星普查計劃</span>
+      <span class="logo"><a href="{{ route('path') }}/">TAOS II</a></span><span class="chinesetitle hide-on-small-only">海王星外自動掩星普查計劃</span>
     </div>
-    <div class="right menu">
+    <div class="right menu hide-on-small-only">
       <a class="item" href="{{ route('path') }}/about">{{ trans('base.about') }}</a>
       <a class="item" href="{{ route('path') }}/news">{{ trans('base.news') }}</a>
       <div class="ui dropdown item ">{{ trans('base.project') }}
@@ -23,42 +23,4 @@
       <a class="item" href="{{ route('path') }}/publications">{{ trans('base.publications') }}</a>
     </div>
   </div>
-    <!-- for mobile only -->
-  <div class="ui left vertical menu sidebar mobile">
-    <a class="item">
-      <i class="large icons">
-        <i class="travel icon"></i>
-      </i> {{ trans('base.about') }}
-    </a>
-    <a class="item">
-      <i class="large icons">
-        <i class="newspaper icon"></i>
-      </i> {{ trans('base.news') }}
-    </a>
-    <a class="item">
-      <i class="large icons">
-        <i class="info circle icon"></i>
-      </i> {{ trans('base.project') }}
-    </a>
-    <a class="item">
-      <span class="subitem">{{ trans('base.telescopes') }}</span>
-    </a>
-    <a class="item">
-      <span class="subitem">{{ trans('base.cameras') }}</span>
-    </a>
-    <a class="item">
-      <span class="subitem">{{ trans('base.site') }}</span>
-    </a>
-    <a class="item">
-      <i class="large icons">
-        <i class="file image outline icon"></i>
-      </i> {{ trans('base.gallery') }}
-    </a>
-    <a class="item">
-      <i class="large icons">
-        <i class="book icon"></i>
-      </i> {{ trans('base.publications') }}
-    </a>
-  </div>
-    <!-- end mobile -->
 </nav>

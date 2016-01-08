@@ -1,0 +1,118 @@
+@extends('includes.base')
+@section('title')
+    {{ trans('base.charts') }}
+@stop
+@section('css')
+<link rel="stylesheet" href="/css/linechart.css">
+@stop
+@section('content')
+    <h2 class="padded">{{ trans('base.charts') }}</h2>
+<div class="container" ng-app="app" ng-controller="MainCtrl">
+  <linechart data="data" options="options"></linechart>
+</div>
+@stop
+@section('js')
+<script src="/js/angular.js"></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="/js/linechart.js"></script>
+<script>
+angular.module('app', ['n3-line-chart'])
+.controller('MainCtrl',function ($scope, $http, $templateCache){
+    //var startTime = Date.now() - 3600 * 1000, endTime = Date.now();
+    var dataset0 = [];
+    var dataset1 = [];
+    var now = new Date();
+    //var i = 1;
+    $scope.method = 'GET';
+    $scope.url = '<?=url('/charts/wxtd')?>';
+    $scope.code = null;
+    $scope.response = null;
+    $http({method: $scope.method, url: $scope.url, cache: $templateCache}).
+    success(function(data, status) {
+        $.each(data,function(key,val){
+            //nowtime = new Date(now.getTime() + 0*1000);
+            dataset0.push({
+                //"timestamp":(val.timestamp*1000),
+                "x": new Date(val.timestamp*1000),
+                "temp":val.temperature,
+                "hum":val.humidity,
+                "pressure":val.pressure
+            });
+            dataset1.push({
+                //"timestamp":(val.timestamp*1000),
+                "x": new Date(val.timestamp*1000),
+                "pressure":val.pressure
+            });
+            //i++;
+            //console.log(val.timestamp*1000);
+            //console.log(new Date(now.getTime() + i*1000));
+        })
+    }).
+    error(function(data, status) {
+        $scope.data = data || "Request failed";
+        $scope.status = status;
+        log.l("Request Failed");
+    });
+
+    $scope.data = {dataset0: dataset0, dataset1: dataset1};
+    $scope.options = {
+      axes: {
+        x: {
+          key: "x",
+          type: 'date',
+          ticksFormat: '%H',
+          tooltipFormat: '%H',
+          ticksRotate: 20
+        },
+        y: {
+          type: 'linear',
+          ticksRotate: 20,
+            min: 0,
+            max: 900,
+        },
+        y2: {
+            min: 0,
+            max: 900,
+            key: "pressure",
+            id: 'y2'
+          }
+      },
+      series: [
+        {
+          //axis: "y",
+          dataset: "dataset0",
+          key: 'temp',
+          label: 'Temp',
+          type: ['line'],
+          color: "rgb(126, 181, 63)",
+          interpolation: {mode: 'basis', tension: 0.7},
+          id: 'temp'
+        }
+        ,
+        {
+          //axis: "y",
+          dataset: "dataset0",
+          key: 'hum',
+          type: ['line'],
+          label: 'Hum',
+          color: "rgb(200, 96, 69)",
+          interpolation: {mode: 'basis', tension: 0.7},
+          id: 'hum'
+        },
+        {
+          axis: "y2",
+          //y2: "pressure",
+          dataset: "dataset1",
+          key: 'pressure',
+          type: ['line'],
+          label: 'pressure',
+          color: "rgb(119, 48, 131)",
+          id: 'pressure'
+        }
+      ]
+    };
+
+});
+
+</script>
+@stop

@@ -10,7 +10,8 @@
     @yield('css')
 </head>
 <body>
-    <div class="pureparallax">
+    @include('includes.sidebar')
+    <div class="pureparallax pusher">
         @include('includes.nav')
         @include('includes.language')
         @yield('nav_home')
@@ -18,8 +19,8 @@
         <section id="main" class="ui container">
             @yield('content')
         </section>
+        @include('includes.footer')
     </div>
-    @include('includes.footer')
     <!-- Scripts-->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/semantic.min.js"></script>
@@ -29,9 +30,10 @@
           .dropdown({
             on: 'hover'
           });
-        $('nav .ui.sidebar')
+        $('.ui.sidebar').first()
           .sidebar('attach events', 'nav .m_menu .item')
-        ;/*
+        ;
+        /*
         $('.update').delay(3000).slideUp(300);
         // Show sideNav
         $(".button-collapse").sideNav();
@@ -52,10 +54,8 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
         ga('create', 'UA-71102442-1', 'auto');
         ga('send', 'pageview');
-
     </script>
 </body>
 </html>

@@ -10,7 +10,6 @@ nav {
     background: rgba(0, 0, 0, 0.2);
     background-image: url("/images/nav_bg.png"); }
   nav .logo a {
-    padding-left: 30px;
     font-size: 2em;
     font-family: "Open Sans", Helvetica, sans-serif;
     color: #FFF; }
