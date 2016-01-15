@@ -11,7 +11,7 @@
         @foreach($publications as $index => $publication)
             <div class="col s12 textindent">
                 <button class="circular ui icon button disabled">{{ $index+1 }}</button>&nbsp;
-                <a class="title" href="{{ $publication->link }}" target="_blank">{{ $publication->title }}.</a>
+                <a href="{{ $publication->link }}" target="_blank">{{ $publication->title }}.</a>
                 <span>{{ $publication->authors }}.</span>
                 <span><i>{{ $publication->affiliation }}</i>,</span>
                 <span>{{ $publication->published_at->format('M. Y') }}</span>

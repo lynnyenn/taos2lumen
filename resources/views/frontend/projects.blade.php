@@ -30,7 +30,6 @@
 @section('js')
     <script type="text/javascript">
     $(document).ready(function() {
-      // fix main menu to page on passing
       $('.overlay').visibility({
         type: 'fixed',
         offset: 10
@@ -39,14 +38,13 @@
         $('#{{ $project->order_by }}').visibility({
             continuous: true,
             onOnScreen: function() {
-             $('.overlay .item').removeClass('active');
-             $('.overlay .{{ $project->order_by }}').addClass('active');
-            },
-            onOffScreen : function() {
-               $('.overlay .{{ $project->order_by }}').removeClass('active');
+              $('.overlay .{{ $project->order_by }}')
+              .addClass('active')
+              .siblings()
+              .removeClass('active');
             }
         });
       @endforeach
-    }) ;
+    });
     </script>
 @stop

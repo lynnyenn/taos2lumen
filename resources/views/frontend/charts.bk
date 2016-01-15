@@ -4,12 +4,17 @@
 @stop
 @section('css')
 <link rel="stylesheet" href="/css/linechart.css">
+<style type="text/css">
+  .container .axis > .tick > text {
+    fill: lightgrey;
+  }
+</style>
 @stop
 @section('content')
-    <h2 class="padded">{{ trans('base.charts') }}</h2>
-<div class="container" ng-app="app" ng-controller="MainCtrl">
-  <linechart data="data" options="options"></linechart>
-</div>
+  <h2 class="padded">{{ trans('base.charts') }}</h2>
+  <div class="container" ng-app="app" ng-controller="MainCtrl">
+    <linechart data="data" options="options"></linechart>
+  </div>
 @stop
 @section('js')
 <script src="/js/angular.js"></script>
@@ -22,6 +27,7 @@ angular.module('app', ['n3-line-chart'])
     var dataset0 = [];
     var dataset1 = [];
     var now = new Date();
+    var timeformat = [];
     //var i = 1;
     $scope.method = 'GET';
     $scope.url = '<?=url('/charts/wxtd')?>';
@@ -56,33 +62,35 @@ angular.module('app', ['n3-line-chart'])
 
     $scope.data = {dataset0: dataset0, dataset1: dataset1};
     $scope.options = {
+      tooltiphook:"false",
       axes: {
         x: {
           key: "x",
+          ticks: 5,
           type: 'date',
-          ticksFormat: '%H',
-          tooltipFormat: '%H',
-          ticksRotate: 20
+          tickFormat: function(value) {
+            timeformat[0] = (value.getHours() < 10 ? "0"+value.getHours() : value.getHours());
+            timeformat[1] = (value.getMinutes() < 10 ? "0"+value.getMinutes() : value.getMinutes());
+            timeformat[2] = (value.getSeconds() < 10 ? "0"+value.getSeconds() : value.getSeconds());
+            //console.log(timeformat.join(":"));
+            return timeformat.join(":");
+            //value.getHours()+":"+value.getMinutes()+":"+value.getSeconds();
+          }
         },
         y: {
           type: 'linear',
-          ticksRotate: 20,
-            min: 0,
-            max: 900,
         },
         y2: {
-            min: 0,
-            max: 900,
-            key: "pressure",
-            id: 'y2'
-          }
+          type: 'linear',
+          ticksRotate: 20,
+        }
       },
       series: [
         {
           //axis: "y",
           dataset: "dataset0",
           key: 'temp',
-          label: 'Temp',
+          label: 'Temperature',
           type: ['line'],
           color: "rgb(126, 181, 63)",
           interpolation: {mode: 'basis', tension: 0.7},
@@ -94,13 +102,13 @@ angular.module('app', ['n3-line-chart'])
           dataset: "dataset0",
           key: 'hum',
           type: ['line'],
-          label: 'Hum',
+          label: 'Humidity',
           color: "rgb(200, 96, 69)",
           interpolation: {mode: 'basis', tension: 0.7},
           id: 'hum'
         },
         {
-          axis: "y2",
+          axis: "y",
           //y2: "pressure",
           dataset: "dataset1",
           key: 'pressure',

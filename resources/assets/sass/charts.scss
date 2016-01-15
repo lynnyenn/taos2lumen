@@ -1,0 +1,88 @@
+$temp: #e53935;
+$hum: #1e88e5;
+$pressure: #ef6c00;
+$wind: #b2dfdb;
+$rainfall: #d500f9;
+
+#charts{
+  font-size: 10pt;
+}
+
+path.temp{
+  stroke: $temp;
+}
+g.temp{
+  fill: $temp;
+}
+path.hum{
+  stroke: $hum;
+}
+g.hum{
+  fill: $hum;
+}
+path.pressure{
+  stroke: $pressure;
+}
+path.wind{
+  //fill: $wind;
+  //opacity: 0.5;
+  stroke: $wind;
+  stroke-width:2;
+  stroke-dasharray: 10;
+}
+path.rainfall{
+  stroke: $rainfall;
+}
+path {
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+div.tooltip {
+    position: absolute;
+    width: 250px;
+    padding: 10px !important;
+    font: 10px;
+    background: #fff;
+    border: 1px;
+    pointer-events: none;
+    z-index:500;
+    .item{
+      height: 30px;
+      .wi{
+        font-size: 20px;
+        width: 30px;
+        text-align: center;
+        vertical-align: text-bottom;
+      }
+      .itemname{
+        display: inline-block;
+        width: 100px;
+        padding: 0 5px;
+      }
+    }
+    .temp{
+      color: $temp;
+    }
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.segsubtitle{
+  font-size: 10px;
+  color: gray;
+  font-weight: 400;
+}
+.sitedropdown{
+  float:right;
+  margin-bottom: 30px !important;
+}

@@ -1,0 +1,73 @@
+#charts {
+  font-size: 10pt; }
+
+path.temp {
+  stroke: #e53935; }
+
+g.temp {
+  fill: #e53935; }
+
+path.hum {
+  stroke: #1e88e5; }
+
+g.hum {
+  fill: #1e88e5; }
+
+path.pressure {
+  stroke: #ef6c00; }
+
+path.wind {
+  stroke: #b2dfdb;
+  stroke-width: 2;
+  stroke-dasharray: 10; }
+
+path.rainfall {
+  stroke: #d500f9; }
+
+path {
+  fill: none; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges; }
+
+div.tooltip {
+  position: absolute;
+  width: 250px;
+  padding: 10px !important;
+  font: 10px;
+  background: #fff;
+  border: 1px;
+  pointer-events: none;
+  z-index: 500; }
+  div.tooltip .item {
+    height: 30px; }
+    div.tooltip .item .wi {
+      font-size: 20px;
+      width: 30px;
+      text-align: center;
+      vertical-align: text-bottom; }
+    div.tooltip .item .itemname {
+      display: inline-block;
+      width: 100px;
+      padding: 0 5px; }
+  div.tooltip .temp {
+    color: #e53935; }
+
+.overlay {
+  fill: none;
+  pointer-events: all; }
+
+.segsubtitle {
+  font-size: 10px;
+  color: gray;
+  font-weight: 400; }
+
+.sitedropdown {
+  float: right;
+  margin-bottom: 30px !important; }
+
+/*# sourceMappingURL=charts.css.map */

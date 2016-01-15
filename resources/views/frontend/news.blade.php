@@ -16,7 +16,7 @@
         <div class="row news">
         @foreach($newslist as $news)
             @if($news->title)
-                <h4 class="header">{{ $news->title }}</h4>
+                <h4 class="title">{{ $news->title }}</h4>
                 <section class="date">{{ $news->published_at->format('Y-m-d') }}</section>
                 <article>{!! str_limit($news->body, $limit = 500, $end = '...') !!}</article>
                 <div class="readmore">

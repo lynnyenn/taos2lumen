@@ -113,15 +113,16 @@
         type: 'fixed',
         offset: 10
       });
+
       @foreach ($companys as $company=>$peoples)
         $('#{{ $company }}').visibility({
             continuous: true,
             onOnScreen: function() {
              $('.overlay .item').removeClass('active');
-             $('.overlay .{{ $company }}').addClass('active');
-            },
-            onOffScreen : function() {
-               $('.overlay .{{ $company }}').removeClass('active');
+             $('.overlay .{{ $company }}')
+              .addClass('active')
+              .siblings()
+              .removeClass('active');
             }
         });
       @endforeach
@@ -129,20 +130,20 @@
             continuous: true,
             onOnScreen: function() {
              $('.overlay .item').removeClass('active');
-             $('.overlay .institutional').addClass('active');
-            },
-            onOffScreen : function() {
-               $('.overlay .institutional').removeClass('active');
+             $('.overlay .institutional')
+              .addClass('active')
+              .siblings()
+              .removeClass('active');
             }
         });
         $('#industrial').visibility({
             continuous: true,
             onOnScreen: function() {
              $('.overlay .item').removeClass('active');
-             $('.overlay .industrial').addClass('active');
-            },
-            onOffScreen : function() {
-               $('.overlay .industrial').removeClass('active');
+             $('.overlay .industrial')
+              .addClass('active')
+              .siblings()
+              .removeClass('active');
             }
         });
     }) ;

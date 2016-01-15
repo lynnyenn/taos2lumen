@@ -40,6 +40,10 @@ $app->get($locate . 'projects', 'ProjectsController@index');
 $app->get($locate . 'gallery', 'GalleryController@index');
 $app->get($locate . 'publications', 'PublicationsController@index');
 
+$app->get($locate . 'charts/overview', 'ChartsController@overview');
+$app->get($locate . 'charts/live', 'ChartsController@live');
+$app->get($locate . 'charts/wind', 'ChartsController@wind');
+$app->get($locate . 'charts/jsonlive', 'ChartsController@jsonlive');
 $app->get($locate . 'charts/{id}', 'ChartsController@show');
 $app->get($locate . 'charts', 'ChartsController@index');
 /*
